@@ -13,13 +13,11 @@ env:
 
 jobs:
   build:
-
     name: build-${{matrix.os}}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET Core
@@ -31,4 +29,22 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore 
+
+  analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: .NET code metrics
+        id: dotnet-code-metrics
+        uses: dotnet/samples/github-actions/DotNet.GitHubAction@main
+        env:
+          GREETINGS: 'Hello, .NET developers!' # ${{ secrets.GITHUB_TOKEN }}
+        with:
+          owner: ${{ github.repository_owner }}
+          name: ${{ github.repository }}
+          branch: ${{ github.ref }}
+          dir: ${{ './github-actions/DotNet.GitHubAction' }}
