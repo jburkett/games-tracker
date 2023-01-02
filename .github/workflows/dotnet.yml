@@ -56,6 +56,7 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EDITORCONFIG_FILE_NAME: .editorconfig
+          VALIDATE_CSHARP: true
 
 #      - name: Create pull request
 #        uses: peter-evans/create-pull-request@v4
