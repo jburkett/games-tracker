@@ -38,21 +38,30 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - name: .NET code metrics
-        id: dotnet-code-metrics
-        uses: dotnet/samples/github-actions/DotNet.GitHubAction@main
-        env:
-          GREETINGS: 'Hello, .NET developers!' # ${{ secrets.GITHUB_TOKEN }}
-        with:
-          owner: ${{ github.repository_owner }}
-          name: ${{ github.repository }}
-          branch: ${{ github.ref }}
-          dir: ${{ './github-actions/DotNet.GitHubAction' }}
+#      - name: .NET code metrics
+#        id: dotnet-code-metrics
+#        uses: dotnet/samples/github-actions/DotNet.GitHubAction@main
+#        env:
+#          GREETINGS: 'Hello, .NET developers!' # ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          owner: ${{ github.repository_owner }}
+#          name: ${{ github.repository }}
+#          branch: ${{ github.ref }}
+#          dir: ${{ './github-actions/DotNet.GitHubAction' }}
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v4
-        if: ${{ steps.dotnet-code-metrics.outputs.updated-metrics }} == 'true'
-        with:
-          title: '${{ steps.dotnet-code-metrics.outputs.summary-title }}'
-          body: '${{ steps.dotnet-code-metrics.outputs.summary-details }}'
-          commit-message: '.NET code metrics, automated pull request.'
+      - name: Lint Code Base
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EDITORCONFIG_FILE_NAME: .editorconfig
+
+#      - name: Create pull request
+#        uses: peter-evans/create-pull-request@v4
+#        if: ${{ steps.dotnet-code-metrics.outputs.updated-metrics }} == 'true'
+#        with:
+#          title: '${{ steps.dotnet-code-metrics.outputs.summary-title }}'
+#          body: '${{ steps.dotnet-code-metrics.outputs.summary-details }}'
+#          commit-message: '.NET code metrics, automated pull request.'
+          

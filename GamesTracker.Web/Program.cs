@@ -1,5 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
+var I_AM_A_BAD_NAME = "bad name";
+Console.Write(I_AM_A_BAD_NAME);
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 
