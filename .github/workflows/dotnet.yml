@@ -57,6 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EDITORCONFIG_FILE_NAME: .editorconfig
           VALIDATE_CSHARP: true
+          DEFAULT_WORKSPACE: .
 
 #      - name: Create pull request
 #        uses: peter-evans/create-pull-request@v4
