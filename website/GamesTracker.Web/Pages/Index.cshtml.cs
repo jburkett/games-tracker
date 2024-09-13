@@ -1,9 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GamesTracker.Web.Pages;
 
-public class IndexModel(ILogger<IndexModel> logger) : PageModel
+public class IndexModel : PageModel
 {
     public List<GameModel> Games { get; set; } = [];
 
@@ -19,8 +18,8 @@ public class IndexModel(ILogger<IndexModel> logger) : PageModel
 
     public class GameModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public int Id { get; init; }
+        public string Name { get; init; } = string.Empty;
+        public string Description { get; init; } = string.Empty;
     }
 }
