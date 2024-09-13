@@ -3,7 +3,7 @@ name: build and test
 on:
   push:
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - '**.cs'
       - '**.csproj'
@@ -29,10 +29,10 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore ./website
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./website --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test ./website --no-restore --verbosity normal
