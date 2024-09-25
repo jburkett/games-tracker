@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTracker.Web", "GamesTr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTracker.Web.UnitTests", "GamesTracker.Web.UnitTests\GamesTracker.Web.UnitTests.csproj", "{E6A001BC-EF61-414C-BB41-BBCABF640FF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTracker.UnitTesting.Infrastructure", "GamesTracker.UnitTesting.Infrastructure\GamesTracker.UnitTesting.Infrastructure.csproj", "{4BBD6173-DD79-4DF5-A405-9D9B041D8F09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTracker.Core", "GamesTracker.Core\GamesTracker.Core.csproj", "{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{E6A001BC-EF61-414C-BB41-BBCABF640FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6A001BC-EF61-414C-BB41-BBCABF640FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6A001BC-EF61-414C-BB41-BBCABF640FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BBD6173-DD79-4DF5-A405-9D9B041D8F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BBD6173-DD79-4DF5-A405-9D9B041D8F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BBD6173-DD79-4DF5-A405-9D9B041D8F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BBD6173-DD79-4DF5-A405-9D9B041D8F09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
