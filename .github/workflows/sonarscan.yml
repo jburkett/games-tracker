@@ -8,15 +8,16 @@ on:
 jobs:
   sonar-scan:
     steps:
-      - name: scanning
+      - name: SonarScanner for .NET 8 with pull request decoration support
         uses: highbyte/sonarscan-dotnet@v2.3.2
         with:
           # The key of the SonarQube project
           sonarProjectKey: jburkett_games-tracker
           # The name of the SonarQube project
-          sonarProjectName: games-tracker
+          sonarProjectName:  games-tracker
           # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
           sonarOrganization: jburkett
+
   env:
     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
