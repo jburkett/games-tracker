@@ -32,7 +32,9 @@ jobs:
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
       - name: Install dotnet tools
-        run: dotnet tool install -g dotnet-coverage
+        run: |
+          dotnet tool install -g dotnet-coverage
+          dotnet tool install --global dotnet-sonarscanner
       - name: restore dependencies
         run: dotnet restore website/GamesTracker.sln
       - name: Build and analyze
