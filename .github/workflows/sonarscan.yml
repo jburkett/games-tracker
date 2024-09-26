@@ -24,4 +24,4 @@ jobs:
           # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
           sonarOrganization: jburkett
           # Optional extra command arguments the the SonarScanner 'begin' command
-          dotnetBuildArguments: ./website
+          dotnetBuildArguments: ./website/GamesTracker.sln
