@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTracker.UnitTesting.In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTracker.Core", "GamesTracker.Core\GamesTracker.Core.csproj", "{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTracker.Core.UnitTests", "GamesTracker.Core.UnitTests\GamesTracker.Core.UnitTests.csproj", "{FC07DFE3-3361-4CD5-BB40-E3F1B5F9E84E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{639FE05C-CB82-4966-9CAE-C56DC12FDDD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC07DFE3-3361-4CD5-BB40-E3F1B5F9E84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC07DFE3-3361-4CD5-BB40-E3F1B5F9E84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC07DFE3-3361-4CD5-BB40-E3F1B5F9E84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC07DFE3-3361-4CD5-BB40-E3F1B5F9E84E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

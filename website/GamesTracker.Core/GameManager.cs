@@ -1,6 +1,6 @@
 namespace GamesTracker.Core;
 
-public class GameManager(GamesTrackerContext gamesTrackerContext)
+public class GameManager(GamesTrackerContext gamesTrackerContext) : IGameManager
 {
     private readonly GamesTrackerContext _gamesTrackerContext = gamesTrackerContext;
 
