@@ -1,4 +1,6 @@
+using GamesTracker.Core;
 using GamesTracker.Web.Pages;
+using NSubstitute;
 
 namespace GamesTracker.Web.UnitTests.Pages.IndexTests;
 
@@ -10,7 +12,11 @@ public class OnGetTests
     [Fact]
     public void Games_List_Should_Have_Three_Items()
     {
-        var page = new IndexModel();
+        var manager = Substitute.For<IGameManager>();
+        manager.GetGames().Returns([
+            new Game { Name = "Game 1" }, new Game { Name = "Game 2" }, new Game { Name = "Game 3" }
+        ]);
+        var page = new IndexModel(manager);
         page.OnGet();
 
         page.Games.Count.Should().Be(3);
