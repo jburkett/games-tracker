@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: jeremy
+      changes:
+        - createTable:
+            tableName: games
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - insert:
+            tableName: games
+            columns:
+              - column:
+                  name: name
+                  value: 'Chess'
+              - column:
+                  name: description
+                  value: 'A simple board game'
+        - insert:
+            tableName: games
+            columns:
+              - column:
+                  name: name
+                  value: 'Risk'
+              - column:
+                  name: description
+                  value: 'An absurd board game'
+        - insert:
+            tableName: games
+            columns:
+              - column:
+                  name: name
+                  value: 'Scrabble'
+              - column:
+                  name: description
+                  value: 'A game of words'

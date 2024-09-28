@@ -1,7 +1,13 @@
+using GamesTracker.Core;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IGameManager, GameManager>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<GamesTrackerContext>()
 
 var app = builder.Build();
 

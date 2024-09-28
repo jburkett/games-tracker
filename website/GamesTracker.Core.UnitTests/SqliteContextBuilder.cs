@@ -1,7 +1,7 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace GamesTracker.Core.UnitTests.GamesManagerTests;
+namespace GamesTracker.Core.UnitTests;
 
 public class SqliteContextBuilder
 {
