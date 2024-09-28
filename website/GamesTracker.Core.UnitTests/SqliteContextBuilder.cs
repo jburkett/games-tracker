@@ -1,5 +1,7 @@
+using GamesTracker.Core.DataAccess;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using NSubstitute;
 
 namespace GamesTracker.Core.UnitTests;
 
@@ -15,8 +17,8 @@ public class SqliteContextBuilder
         var options = new DbContextOptionsBuilder<GamesTrackerContext>()
             .UseSqlite(connection)
             .Options;
-
-        _context = new GamesTrackerContext(options);
+        var configurator = Substitute.For<IContextConfigurator>();
+        _context = new GamesTrackerContext(options, configurator);
 
         Reset();
     }

@@ -9,6 +9,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GamesTracker.Core\GamesTracker.Core.csproj" />
+      <ProjectReference Include="..\GamesTracker.DataAccess.Postgres\GamesTracker.DataAccess.Postgres.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
     </ItemGroup>
 
 </Project>
