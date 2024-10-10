@@ -4,7 +4,9 @@ using GamesTracker.DataAccess.Postgres;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddUserSecrets<Program>();
 
+var connectionString = builder.Configuration["connection-string"];
 builder.Services.AddScoped<IGameManager, GameManager>();
 
 // Add services to the container.
@@ -12,7 +14,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IContextConfigurator, PostgresContextConfigurator>();
 builder.Services.AddDbContext<GamesTrackerContext>(
-    options => options.UseNpgsql(""));
+    options => options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 

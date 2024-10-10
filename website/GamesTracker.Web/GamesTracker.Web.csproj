@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
       <TargetFramework>net8.0</TargetFramework>
       <AnalysisModeRoslynDiagnosticsDesign>AllDisabledByDefault</AnalysisModeRoslynDiagnosticsDesign>
       <Nullable>enable</Nullable>
       <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+      <UserSecretsId>8e3e3a55-e052-4594-b546-0499b3e7e256</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\GamesTracker.Core\GamesTracker.Core.csproj" />
