@@ -7,7 +7,7 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Id</th>
+        <th></th>
         <th>Name</th>
         <th>Description</th>
     </tr>
@@ -15,8 +15,8 @@
     <tbody>
     @foreach (var game in Model.Games)
     {
-        <tr>
-            <td><span class="text-bg-success p-3">@game.Id</span></td>
+        <tr data-id="@game.Id">
+            <td><i class="bi bi-file-text"></i></td>
             <td>@game.Name</td>
             <td>@game.Description</td>
         </tr>
