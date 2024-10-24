@@ -1,22 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-      <TargetFramework>net8.0</TargetFramework>
-      <AnalysisModeRoslynDiagnosticsDesign>AllDisabledByDefault</AnalysisModeRoslynDiagnosticsDesign>
-      <Nullable>enable</Nullable>
-      <ImplicitUsings>enable</ImplicitUsings>
-      <UserSecretsId>8e3e3a55-e052-4594-b546-0499b3e7e256</UserSecretsId>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AnalysisModeRoslynDiagnosticsDesign>AllDisabledByDefault</AnalysisModeRoslynDiagnosticsDesign>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>8e3e3a55-e052-4594-b546-0499b3e7e256</UserSecretsId>
   </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\GamesTracker.Core\GamesTracker.Core.csproj" />
-      <ProjectReference Include="..\GamesTracker.DataAccess.Postgres\GamesTracker.DataAccess.Postgres.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GamesTracker.Core\GamesTracker.Core.csproj" />
+    <ProjectReference Include="..\GamesTracker.DataAccess.Postgres\GamesTracker.DataAccess.Postgres.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
-      <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.9.0" />
-    </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.9.0" />
+  </ItemGroup>
+  
+  <Target Name="CompileTypeScript" BeforeTargets="Build">
+    <Exec Command="tsc" WorkingDirectory="$(ProjectDir)" />
+  </Target>
 </Project>
