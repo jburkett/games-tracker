@@ -8,4 +8,9 @@ public class GameManager(GamesTrackerContext gamesTrackerContext) : IGameManager
     {
         return _gamesTrackerContext.Games.ToArray();
     }
+
+    public Game? GetGame(int id)
+    {
+        return _gamesTrackerContext.Games.Find(id);
+    }
 }
