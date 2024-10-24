@@ -8,11 +8,21 @@ namespace GamesTracker.Web.UnitTests.Api.GamesControllerTests;
 public class GetGameTests
 {
     [Fact]
-    public void Returns_OkObjectResult()
+    public void Returns_200_For_Valid_Id()
     {
         var controller = new GamesController(GetSimpleGameManager());
 
         var actual = controller.GetGame(1) as OkObjectResult;
+
+        actual.Should().NotBeNull();
+    }
+    [Fact]
+
+    public void Returns_404_For_Valid_Id()
+    {
+        var controller = new GamesController(GetSimpleGameManager());
+
+        var actual = controller.GetGame(24) as NotFoundResult;
 
         actual.Should().NotBeNull();
     }

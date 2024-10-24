@@ -11,9 +11,15 @@ public class GamesController(IGameManager gameManager) : ControllerBase
 
     [HttpGet("{id}")]
     [ProducesResponseType<Game>(StatusCodes.Status200OK)]
+    [ProducesResponseType<Game>(StatusCodes.Status404NotFound)]
     public IActionResult GetGame(int id)
     {
         var game = _gameManager.GetGame(id);
+        if (game == null)
+        {
+            return NotFound();
+        }
+
         return Ok(game);
     }
 }
