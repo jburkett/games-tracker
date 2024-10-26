@@ -1,0 +1,3 @@
+## gitignore for only the dotnet solution
+
+*/wwwroot/js-gen/
