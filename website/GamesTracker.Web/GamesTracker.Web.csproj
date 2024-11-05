@@ -18,6 +18,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.9.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js-gen\" />
+  </ItemGroup>
   
   <Target Name="CompileTypeScript" BeforeTargets="Build">
     <Exec Command="tsc" WorkingDirectory="$(ProjectDir)" />

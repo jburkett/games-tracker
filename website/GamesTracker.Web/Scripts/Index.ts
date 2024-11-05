@@ -1,12 +1,14 @@
+import { Observable } from "./bindable-model.js";
+
 class Game {
-    id: number;
-    name: string;
-    description: string;
+    id: Observable<number>;
+    name: Observable<string>;
+    description: Observable<string>;
 
     constructor(id: number, name: string, description: string) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+        this.id = new Observable(id);
+        this.name = new Observable(name);
+        this.description = new Observable(description);
     }
 }
 
@@ -33,7 +35,7 @@ const getThisGame = async function (this: HTMLAnchorElement): Promise<void> {
     let gameId: number = parseInt(this.dataset.edit, 10);
     let theGame: Game = await fetchGameDetails(gameId);
 
-    alert(theGame.name)
+    alert(theGame.name.value)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
