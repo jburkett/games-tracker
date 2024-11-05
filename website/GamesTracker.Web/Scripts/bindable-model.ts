@@ -3,7 +3,7 @@
 type Listener<T> = (value: T) => void;
 
 export class Observable<T> {
-    private _listeners: Listener<T>[];
+    private readonly _listeners: Listener<T>[];
     protected _value: T;
 
     constructor(value: T) {
