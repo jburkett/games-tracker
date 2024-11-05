@@ -30,7 +30,7 @@ const fetchGameDetails = async (id: number): Promise<Game> => {
 }
 
 const getThisGame = async function (this: HTMLAnchorElement): Promise<void> {
-    let gameId: number = parseInt(this.dataset.edit as string, 10);
+    let gameId: number = parseInt(this.dataset.edit, 10);
     let theGame: Game = await fetchGameDetails(gameId);
 
     alert(theGame.name)
