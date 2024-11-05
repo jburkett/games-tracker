@@ -15,8 +15,8 @@
     <tbody>
     @foreach (var game in Model.Games)
     {
-        <tr data-id="@game.Id">
-            <td><a data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-file-text"></i></a></td>
+        <tr>
+            <td><a data-bs-toggle="modal" data-bs-target="#exampleModal" data-edit="@game.Id"><i class="bi bi-file-text"></i></a></td>
             <td>@game.Name</td>
             <td>@game.Description</td>
         </tr>
@@ -24,8 +24,8 @@
     </tbody>
 </table>
 
-<script src="~/js-gen/simpleAlert.js"></script>
-<button onclick="showAlert()">Click me</button>
+<script src="~/js-gen/Index.js"></script>
+<button id="clickButton">Click me</button>
 
 @section Modal
 {
