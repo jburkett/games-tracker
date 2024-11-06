@@ -1,15 +1,31 @@
 import { Game, fetchGameDetails } from "./GamesApi.js";
-import {bindControl} from "./bindable-model";
+import {bindControl, Observable} from "./bindable-model.js";
 
-let modalGame = new Game(0, '', '');
+class BindableGame {
+    id: Observable<number>;
+    name: Observable<string>;
+    description: Observable<string>;
+
+    constructor(id: number, name: string, description: string) {
+        this.id = new Observable(id);
+        this.name = new Observable(name);
+        this.description = new Observable(description);
+    }
+
+    public updateFromGame(game: Game): void {
+        this.id.value = game.id;
+        this.name.value = game.name;
+        this.description.value = game.description;
+    }
+}
+
+let boundGame = new BindableGame(0, "", "tofu");
 
 const getThisGame = async function (this: HTMLAnchorElement): Promise<void> {
     let gameId: number = parseInt(this.dataset.edit, 10);
     const theGame = await fetchGameDetails(gameId);
-    modalGame.name.value = theGame.name.value;
 
-    alert(modalGame.name.value);
-    document.getElementById('game-name').innerText = modalGame.name.value;
+    boundGame.updateFromGame(theGame);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,5 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.onclick = getThisGame;
     }
 
-    // bindControl(document.getElementById('game-name'), modalGame.name);
+    // (document.getElementById('desc-text') as HTMLInputElement).value = boundGame.description;
+    bindControl(document.getElementById('desc-text'), boundGame.description);
+    bindControl(document.getElementById('desc-label'), boundGame.description);
 });

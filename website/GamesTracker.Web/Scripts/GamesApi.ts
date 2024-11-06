@@ -1,15 +1,7 @@
-import { Observable } from "./bindable-model.js";
-
 export class Game {
-    id: Observable<number>;
-    name: Observable<string>;
-    description: Observable<string>;
-
-    constructor(id: number, name: string, description: string) {
-        this.id = new Observable(id);
-        this.name = new Observable(name);
-        this.description = new Observable(description);
-    }
+    id: number;
+    name: string;
+    description: string;
 }
 
 export const fetchGameDetails = async (id: number): Promise<Game> => {
@@ -20,7 +12,7 @@ export const fetchGameDetails = async (id: number): Promise<Game> => {
         if (response.ok) {
             const data = await response.json();
             console.log("Game Details:", data);
-            return new Game(data.id, data.name, data.description);
+            return {id: data.id, name: data.name, description: data.description};
         } else {
             console.error(`HTTP error! status: ${response.status}`);
             return null;
