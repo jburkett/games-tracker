@@ -25,7 +25,6 @@
 </table>
 
 <script src="~/js-gen/Index.js" type="module"></script>
-<script src="~/js-gen/bindable-model.js" type="module"></script>
 
 @section Modal
 {
@@ -38,7 +37,12 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div class="row">A basic game</div>
+                    <div class="row">
+                        <label id="game-name"></label>
+                    </div>
+                    <div class="row">
+                        <label id="desc-label" for="desc-text">Base</label>: &nbsp;<input type="text" id="desc-text" value="original"/>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
