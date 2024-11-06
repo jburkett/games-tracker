@@ -41,11 +41,21 @@ function bindModal(){
     bindControl(document.getElementById('game-text'), boundGame.name);
 }
 
+const bindGame = () => {
+    document.querySelectorAll("[data-bind]").forEach((elem: HTMLElement) => {
+        const key = elem.getAttribute("data-bind");
+        if(key){
+            const obs = (boundGame as any)[key] as Observable<any>;
+            bindControl(elem, obs);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-edit]') as NodeListOf<HTMLAnchorElement>;
     for(const button of buttons) {
         button.onclick = getThisGame;
     }
 
-    bindModal();
+    bindGame();
 });
