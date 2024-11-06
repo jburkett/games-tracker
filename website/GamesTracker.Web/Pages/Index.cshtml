@@ -32,17 +32,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Chess</h1>
+                <h1 class="modal-title fs-5">
+                    <input id="game-text" style="width: 100%;"/>
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <div class="row">
-                        <label id="game-name"></label>
-                    </div>
-                    <div class="row">
-                        <label id="desc-label" for="desc-text">Base</label>: &nbsp;<input type="text" id="desc-text" value="original"/>
-                    </div>
+                    <textarea id="desc-text" rows="5" style="resize: vertical; width: 100%;"></textarea>
                 </div>
             </div>
             <div class="modal-footer">

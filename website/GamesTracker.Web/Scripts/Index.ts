@@ -17,9 +17,17 @@ class BindableGame {
         this.name.value = game.name;
         this.description.value = game.description;
     }
+
+    public toGame(): Game {
+        return {
+            id: this.id.value,
+            name: this.name.value,
+            description: this.description.value
+        };
+    }
 }
 
-let boundGame = new BindableGame(0, "", "tofu");
+let boundGame = new BindableGame(0, "", "");
 
 const getThisGame = async function (this: HTMLAnchorElement): Promise<void> {
     let gameId: number = parseInt(this.dataset.edit, 10);
@@ -28,13 +36,16 @@ const getThisGame = async function (this: HTMLAnchorElement): Promise<void> {
     boundGame.updateFromGame(theGame);
 }
 
+function bindModal(){
+    bindControl(document.getElementById('desc-text'), boundGame.description);
+    bindControl(document.getElementById('game-text'), boundGame.name);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-edit]') as NodeListOf<HTMLAnchorElement>;
     for(const button of buttons) {
         button.onclick = getThisGame;
     }
 
-    // (document.getElementById('desc-text') as HTMLInputElement).value = boundGame.description;
-    bindControl(document.getElementById('desc-text'), boundGame.description);
-    bindControl(document.getElementById('desc-label'), boundGame.description);
+    bindModal();
 });
