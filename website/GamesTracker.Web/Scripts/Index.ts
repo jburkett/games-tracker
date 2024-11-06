@@ -1,6 +1,7 @@
-import { Observable } from "./bindable-model.js";
+import { Game, fetchGameDetails } from "./GamesApi.js";
+import {bindControl, Observable} from "./bindable-model.js";
 
-class Game {
+class BindableGame {
     id: Observable<number>;
     name: Observable<string>;
     description: Observable<string>;
@@ -10,32 +11,44 @@ class Game {
         this.name = new Observable(name);
         this.description = new Observable(description);
     }
-}
 
-const fetchGameDetails = async (id: number): Promise<Game> => {
-    const url = `/api/Games/${id}`; // Root-relative URL
+    public updateFromGame(game: Game): void {
+        this.id.value = game.id;
+        this.name.value = game.name;
+        this.description.value = game.description;
+    }
 
-    try {
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Game Details:", data);
-            return new Game(data.id, data.name, data.description);
-        } else {
-            console.error(`HTTP error! status: ${response.status}`);
-            return null;
-        }
-    } catch (error) {
-        console.error("Could not fetch game details for ID", id, ":", error);
-        return null;
+    public toGame(): Game {
+        return {
+            id: this.id.value,
+            name: this.name.value,
+            description: this.description.value
+        };
     }
 }
 
+let boundGame = new BindableGame(0, "", "");
+
 const getThisGame = async function (this: HTMLAnchorElement): Promise<void> {
     let gameId: number = parseInt(this.dataset.edit, 10);
-    let theGame: Game = await fetchGameDetails(gameId);
+    const theGame = await fetchGameDetails(gameId);
 
-    alert(theGame.name.value)
+    boundGame.updateFromGame(theGame);
+}
+
+function bindModal(){
+    bindControl(document.getElementById('desc-text'), boundGame.description);
+    bindControl(document.getElementById('game-text'), boundGame.name);
+}
+
+const bindGame = () => {
+    document.querySelectorAll("[data-bind]").forEach((elem: HTMLElement) => {
+        const key = elem.getAttribute("data-bind");
+        if(key){
+            const obs = (boundGame as any)[key] as Observable<any>;
+            bindControl(elem, obs);
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,4 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     for(const button of buttons) {
         button.onclick = getThisGame;
     }
+
+    bindGame();
 });
