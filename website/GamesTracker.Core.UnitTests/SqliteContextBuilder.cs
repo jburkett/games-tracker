@@ -1,23 +1,22 @@
-using GamesTracker.Core.DataAccess;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using NSubstitute;
 
 namespace GamesTracker.Core.UnitTests;
 
 public class SqliteContextBuilder
 {
+    private const string InMemoryConnectionString = "DataSource=:memory:";
     private readonly GamesTrackerContext _context;
 
     public SqliteContextBuilder()
     {
-        var connection = new SqliteConnection("DataSource=:memory:");
+        var connection = new SqliteConnection(InMemoryConnectionString);
         connection.Open();
 
         var options = new DbContextOptionsBuilder<GamesTrackerContext>()
             .UseSqlite(connection)
             .Options;
-        var configurator = Substitute.For<IContextConfigurator>();
+        var configurator = new SqliteContextConfigurator();
         _context = new GamesTrackerContext(options, configurator);
 
         Reset();

@@ -13,4 +13,10 @@ public class GameManager(GamesTrackerContext gamesTrackerContext) : IGameManager
     {
         return _gamesTrackerContext.Games.Find(id);
     }
+
+    public void UpdateGame(Game game)
+    {
+        _gamesTrackerContext.Games.Update(game);
+        _gamesTrackerContext.SaveChanges();
+    }
 }
