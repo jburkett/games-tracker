@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamesTracker.Core.UnitTests.GamesManagerTests;
 
@@ -36,5 +37,25 @@ public class UpdateGame
         var actual = context.Games.SingleOrDefault(x => x.Id == 2);
 
         actual!.Name.Should().Be("New Title");
+    }
+
+    [Fact]
+    public void Throws_Exception_If_Game_Not_Found()
+    {
+        var mother = new SqliteContextBuilder();
+        var context = mother.AddBaselineGames().CreateContext();
+        var manager = new GameManager(context);
+
+        var game = new Game
+        {
+            Id = 99,
+            Name = "New Title"
+        };
+
+        context.ChangeTracker.Clear();
+
+        var act = () => manager.UpdateGame(game);
+
+        act.Should().Throw<DbUpdateConcurrencyException>();
     }
 }

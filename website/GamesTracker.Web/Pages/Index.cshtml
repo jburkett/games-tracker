@@ -16,7 +16,7 @@
     @foreach (var game in Model.Games)
     {
         <tr>
-            <td><a data-bs-toggle="modal" data-bs-target="#exampleModal" data-edit="@game.Id"><i class="bi bi-file-text"></i></a></td>
+            <td><a data-bs-toggle="modal" data-bs-target="#detailsModal" data-edit="@game.Id"><i class="bi bi-file-text"></i></a></td>
             <td>@game.Name</td>
             <td>@game.Description</td>
         </tr>
@@ -28,7 +28,7 @@
 
 @section Modal
 {
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -44,7 +44,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="save-button">Save changes</button>
             </div>
         </div>
     </div>
