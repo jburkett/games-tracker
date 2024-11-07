@@ -35,6 +35,6 @@ public class UpdateGame
         context.ChangeTracker.Clear();
         var actual = context.Games.SingleOrDefault(x => x.Id == 2);
 
-        actual!.Name.Should().Be("New Title"); // This is checking to make sure the game was not updated
+        actual!.Name.Should().Be("New Title");
     }
 }
