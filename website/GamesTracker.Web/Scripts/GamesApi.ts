@@ -23,3 +23,28 @@ export const fetchGameDetails = async (id: number): Promise<Game> => {
     }
 }
 
+export const updateGameDetails = async (game: Game): Promise<boolean> => {
+    const url = `/api/Games/${game.id}`; // Root-relative URL
+
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(game)
+    };
+
+    try {
+        const response = await fetch(url, options);
+        if (response.ok) {
+            console.log("Game details updated successfully");
+            return true;
+        } else {
+            console.error(`HTTP error! status: ${response.status}`);
+            return false;
+        }
+    } catch (error) {
+        console.error("Could not update game details for ID", game.id, ":", error);
+        return false;
+    }
+}

@@ -1,4 +1,5 @@
-import { Game, fetchGameDetails } from "./GamesApi.js";
+import '../lib/bootstrap/dist/js/bootstrap.bundle.min.js';
+import {Game, fetchGameDetails, updateGameDetails} from "./GamesApi.js";
 import {bindControl, Observable} from "./bindable-model.js";
 
 class BindableGame {
@@ -36,11 +37,6 @@ const getThisGame = async function (this: HTMLAnchorElement): Promise<void> {
     boundGame.updateFromGame(theGame);
 }
 
-function bindModal(){
-    bindControl(document.getElementById('desc-text'), boundGame.description);
-    bindControl(document.getElementById('game-text'), boundGame.name);
-}
-
 const bindGame = () => {
     document.querySelectorAll("[data-bind]").forEach((elem: HTMLElement) => {
         const key = elem.getAttribute("data-bind");
@@ -51,11 +47,21 @@ const bindGame = () => {
     });
 }
 
+const saveGame = async function (): Promise<void> {
+    const game = boundGame.toGame();
+    const isSaved = await updateGameDetails(game);
+    if(isSaved) {
+        window.location.reload()
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-edit]') as NodeListOf<HTMLAnchorElement>;
     for(const button of buttons) {
         button.onclick = getThisGame;
     }
+
+    document.getElementById("save-button")?.addEventListener("click", saveGame);
 
     bindGame();
 });
