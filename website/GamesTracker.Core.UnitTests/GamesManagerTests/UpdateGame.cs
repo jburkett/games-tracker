@@ -8,6 +8,8 @@ public class UpdateGame
     [Fact]
     public void Database_Not_Updated_If_UpdateGame_Not_Called()
     {
+        // This test is mainly a health check for the in memory database.
+
         var mother = new SqliteContextBuilder();
         var context = mother.AddBaselineGames().CreateContext();
         var manager = new GameManager(context);

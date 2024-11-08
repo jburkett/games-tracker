@@ -18,7 +18,7 @@ public class GetGameTests
     }
     [Fact]
 
-    public void Returns_404_For_Valid_Id()
+    public void Returns_404_For_Invalid_Id()
     {
         var controller = new GamesController(GetSimpleGameManager());
 

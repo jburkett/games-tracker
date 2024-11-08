@@ -8,6 +8,13 @@ namespace GamesTracker.Web.Api;
 [ApiController]
 public class GamesController(IGameManager gameManager) : ControllerBase
 {
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public IActionResult GetGames()
+    {
+        return Ok(_gameManager.GetGames());
+    }
+
     private readonly IGameManager _gameManager = gameManager;
 
     [HttpGet("{id}")]
@@ -42,4 +49,17 @@ public class GamesController(IGameManager gameManager) : ControllerBase
             return NotFound();
         }
     }
+
+    [HttpPost]
+    public IActionResult AddGame([FromBody] AddGameRequest request)
+    {
+        _gameManager.AddGame(request.Name, request.Description);
+        // return CreatedAtAction(nameof(GetGame), new { id = game.Id }, game);
+        return Ok();
+    }
+}
+public record AddGameRequest
+{
+    public string Name { get; init; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }
