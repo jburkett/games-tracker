@@ -51,15 +51,10 @@ public class GamesController(IGameManager gameManager) : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult AddGame([FromBody] AddGameRequest request)
     {
-        _gameManager.AddGame(request.Name, request.Description);
-        // return CreatedAtAction(nameof(GetGame), new { id = game.Id }, game);
-        return Ok();
+        var result =_gameManager.AddGame(request.Name, request.Description);
+        return Created($"/api/games/{result.NewGame.Id}", null);
     }
-}
-public record AddGameRequest
-{
-    public string Name { get; init; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
 }

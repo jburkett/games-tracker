@@ -14,7 +14,7 @@ public class GameManager(GamesTrackerContext gamesTrackerContext) : IGameManager
         return _gamesTrackerContext.Games.Find(id);
     }
 
-    public void AddGame(string name, string description)
+    public (bool IsSaved, Game NewGame) AddGame(string name, string description)
     {
         var game = new Game
         {
@@ -24,6 +24,8 @@ public class GameManager(GamesTrackerContext gamesTrackerContext) : IGameManager
 
         var x =_gamesTrackerContext.Games.Add(game);
         _gamesTrackerContext.SaveChanges();
+
+        return (true, x.Entity);
     }
 
     public void UpdateGame(Game game)

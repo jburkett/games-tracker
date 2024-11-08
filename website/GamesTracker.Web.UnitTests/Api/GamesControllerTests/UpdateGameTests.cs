@@ -1,5 +1,6 @@
 using GamesTracker.Core;
 using GamesTracker.Web.Api;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
@@ -76,5 +77,6 @@ public class UpdateGameTests
         var actual = controller.UpdateGame(99, game) as NotFoundResult;
 
         actual.Should().NotBeNull();
+        actual!.StatusCode.Should().Be(StatusCodes.Status404NotFound);
     }
 }

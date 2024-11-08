@@ -18,4 +18,28 @@ public class AddGame
 
         actual.Should().Be(4);
     }
+
+    [Fact]
+    public void Returns_IsSaved_True_When_Succeeds()
+    {
+        var mother = new SqliteContextBuilder();
+        var context = mother.AddBaselineGames().CreateContext();
+        var manager = new GameManager(context);
+
+        var result = manager.AddGame("New game", "");
+
+        result.IsSaved.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Returns_Game_With_New_Id_When_Succeeds()
+    {
+        var mother = new SqliteContextBuilder();
+        var context = mother.AddBaselineGames().CreateContext();
+        var manager = new GameManager(context);
+
+        var result = manager.AddGame("New game", "");
+
+        result.NewGame.Id.Should().Be(4);
+    }
 }
