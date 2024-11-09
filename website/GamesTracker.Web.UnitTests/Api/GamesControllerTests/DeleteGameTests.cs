@@ -21,7 +21,7 @@ public class DeleteGameTests
         var actual = controller.DeleteGame(1) as OkResult;
 
         actual.Should().NotBeNull();
-        actual.StatusCode.Should().Be(StatusCodes.Status200OK);
+        actual!.StatusCode.Should().Be(StatusCodes.Status200OK);
     }
 
     [Fact]
@@ -36,6 +36,6 @@ public class DeleteGameTests
         var actual = controller.DeleteGame(1) as NotFoundResult;
 
         actual.Should().NotBeNull();
-        actual.StatusCode.Should().Be(StatusCodes.Status404NotFound);
+        actual!.StatusCode.Should().Be(StatusCodes.Status404NotFound);
     }
 }
