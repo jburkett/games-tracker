@@ -14,9 +14,33 @@ public class GameManager(GamesTrackerContext gamesTrackerContext) : IGameManager
         return _gamesTrackerContext.Games.Find(id);
     }
 
+    public (bool IsSaved, Game NewGame) AddGame(string name, string description)
+    {
+        var game = new Game
+        {
+            Name = name,
+            Description = description
+        };
+
+        var x =_gamesTrackerContext.Games.Add(game);
+        _gamesTrackerContext.SaveChanges();
+
+        return (true, x.Entity);
+    }
+
     public void UpdateGame(Game game)
     {
         _gamesTrackerContext.Games.Update(game);
         _gamesTrackerContext.SaveChanges();
+    }
+
+    public bool DeleteGame(int id)
+    {
+        var game = _gamesTrackerContext.Games.Find(id);
+        if (game == null) return false;
+
+        _gamesTrackerContext.Games.Remove(game);
+        _gamesTrackerContext.SaveChanges();
+        return true;
     }
 }

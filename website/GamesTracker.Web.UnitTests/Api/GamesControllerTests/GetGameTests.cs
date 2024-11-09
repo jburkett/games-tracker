@@ -1,7 +1,6 @@
 using GamesTracker.Core;
 using GamesTracker.Web.Api;
 using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
 
 namespace GamesTracker.Web.UnitTests.Api.GamesControllerTests;
 
@@ -18,7 +17,7 @@ public class GetGameTests
     }
     [Fact]
 
-    public void Returns_404_For_Valid_Id()
+    public void Returns_404_For_Invalid_Id()
     {
         var controller = new GamesController(GetSimpleGameManager());
 

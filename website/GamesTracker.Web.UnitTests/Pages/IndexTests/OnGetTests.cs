@@ -1,6 +1,5 @@
 using GamesTracker.Core;
 using GamesTracker.Web.Pages;
-using NSubstitute;
 
 namespace GamesTracker.Web.UnitTests.Pages.IndexTests;
 

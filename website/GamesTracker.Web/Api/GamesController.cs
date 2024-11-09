@@ -8,6 +8,13 @@ namespace GamesTracker.Web.Api;
 [ApiController]
 public class GamesController(IGameManager gameManager) : ControllerBase
 {
+    [HttpGet]
+    [ProducesResponseType<Game[]>(StatusCodes.Status200OK)]
+    public IActionResult GetGames()
+    {
+        return Ok(_gameManager.GetGames());
+    }
+
     private readonly IGameManager _gameManager = gameManager;
 
     [HttpGet("{id}")]
@@ -41,5 +48,23 @@ public class GamesController(IGameManager gameManager) : ControllerBase
         {
             return NotFound();
         }
+    }
+
+    [HttpPost]
+    [ProducesResponseType<Game>(StatusCodes.Status201Created)]
+    public IActionResult AddGame([FromBody] AddGameRequest request)
+    {
+        var result =_gameManager.AddGame(request.Name, request.Description);
+        return Created($"/api/games/{result.NewGame.Id}", result.NewGame);
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult DeleteGame(int id)
+    {
+        if (_gameManager.DeleteGame(id)) return Ok();
+
+        return NotFound();
     }
 }
