@@ -57,4 +57,14 @@ public class GamesController(IGameManager gameManager) : ControllerBase
         var result =_gameManager.AddGame(request.Name, request.Description);
         return Created($"/api/games/{result.NewGame.Id}", result.NewGame);
     }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult DeleteGame(int id)
+    {
+        if (_gameManager.DeleteGame(id)) return Ok();
+
+        return NotFound();
+    }
 }
