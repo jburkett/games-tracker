@@ -33,4 +33,14 @@ public class GameManager(GamesTrackerContext gamesTrackerContext) : IGameManager
         _gamesTrackerContext.Games.Update(game);
         _gamesTrackerContext.SaveChanges();
     }
+
+    public bool DeleteGame(int id)
+    {
+        var game = _gamesTrackerContext.Games.Find(id);
+        if (game == null) return false;
+
+        _gamesTrackerContext.Games.Remove(game);
+        _gamesTrackerContext.SaveChanges();
+        return true;
+    }
 }
