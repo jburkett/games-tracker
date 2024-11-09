@@ -66,4 +66,24 @@ public class AddGameTests
         response.Should().NotBeNull();
         response!.Location.Should().Be("/api/games/4");
     }
+
+    [Fact]
+    public void Returns_New_Game()
+    {
+        var request = new AddGameRequest
+        {
+            Name = "game name",
+            Description = "game description"
+        };
+
+        var gameManager = Substitute.For<IGameManager>();
+        gameManager.AddGame(Arg.Any<string>(), Arg.Any<string>())
+            .Returns((true, new Game { Id = 4 }));
+        var controller = new GamesController(gameManager);
+
+        var response = controller.AddGame(request) as CreatedResult;
+        var actual = response!.Value as Game;
+
+        actual!.Id.Should().Be(4);
+    }
 }

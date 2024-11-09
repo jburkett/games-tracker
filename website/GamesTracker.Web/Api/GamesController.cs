@@ -9,7 +9,7 @@ namespace GamesTracker.Web.Api;
 public class GamesController(IGameManager gameManager) : ControllerBase
 {
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<Game[]>(StatusCodes.Status200OK)]
     public IActionResult GetGames()
     {
         return Ok(_gameManager.GetGames());
@@ -51,10 +51,10 @@ public class GamesController(IGameManager gameManager) : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType<Game>(StatusCodes.Status201Created)]
     public IActionResult AddGame([FromBody] AddGameRequest request)
     {
         var result =_gameManager.AddGame(request.Name, request.Description);
-        return Created($"/api/games/{result.NewGame.Id}", null);
+        return Created($"/api/games/{result.NewGame.Id}", result.NewGame);
     }
 }
