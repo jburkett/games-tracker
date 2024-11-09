@@ -3,8 +3,6 @@ using GamesTracker.Web.Api;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NSubstitute;
-using NSubstitute.ExceptionExtensions;
 
 namespace GamesTracker.Web.UnitTests.Api.GamesControllerTests;
 
@@ -64,7 +62,7 @@ public class UpdateGameTests
         var gameManager = Substitute.For<IGameManager>();
 
         gameManager.When(x => x.UpdateGame(Arg.Any<Game>()))
-            .Throw(x => new DbUpdateConcurrencyException());
+            .Throw(_ => new DbUpdateConcurrencyException());
 
         var controller = new GamesController(gameManager);
 

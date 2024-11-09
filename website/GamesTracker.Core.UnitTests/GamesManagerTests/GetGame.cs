@@ -1,5 +1,3 @@
-using FluentAssertions;
-
 namespace GamesTracker.Core.UnitTests.GamesManagerTests;
 
 public class GetGame

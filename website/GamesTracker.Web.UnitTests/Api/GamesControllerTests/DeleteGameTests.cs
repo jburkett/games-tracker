@@ -2,8 +2,6 @@ using GamesTracker.Core;
 using GamesTracker.Web.Api;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NSubstitute;
 
 namespace GamesTracker.Web.UnitTests.Api.GamesControllerTests;
 
