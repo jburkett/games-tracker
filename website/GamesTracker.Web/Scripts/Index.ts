@@ -59,7 +59,8 @@ let isFillModalRunning = false;
 
 const fillModal = async function (event: ModalEvent): Promise<void> {
     if (isFillModalRunning) return;
-    isFillModalRunning = true;    const button = event.relatedTarget as HTMLButtonElement;
+    isFillModalRunning = true;
+    const button = event.relatedTarget as HTMLButtonElement;
     const gameId = parseInt(button.dataset.edit, 10);
 
     let theGame: Game = {id: 0, name: "", description: ""};
