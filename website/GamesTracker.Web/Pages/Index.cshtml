@@ -4,27 +4,41 @@
     ViewData["Title"] = "Home page";
 }
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var game in Model.Games)
-    {
+<div class="row">
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <td><a data-bs-toggle="modal" data-bs-target="#detailsModal" data-edit="@game.Id"><i class="bi bi-file-text"></i></a></td>
-            <td>@game.Name</td>
-            <td>@game.Description</td>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
         </tr>
-    }
-    </tbody>
-</table>
-
-<script src="~/js-gen/Index.js" type="module"></script>
+        </thead>
+        <tbody>
+        @foreach (var game in Model.Games)
+        {
+            <tr>
+                <td>
+                    <a data-bs-toggle="modal" data-bs-target="#detailsModal" data-edit="@game.Id"><i class="bi bi-pencil-square"></i></a>
+                    <a data-delete="@game.Id"><i class="bi bi-trash"></i></a>
+                </td>
+                <td>@game.Name</td>
+                <td>@game.Description</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal" data-edit="0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+            Add game
+        </button>
+    </div>
+</div>
 
 @section Modal
 {
@@ -33,20 +47,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5">
-                    <input data-bind="name" style="width: 100%;"/>
+                    <input data-bind="name" style="width: 100%;" placeholder="name"/>
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <textarea data-bind="description" rows="5" style="resize: vertical; width: 100%;"></textarea>
+                    <textarea data-bind="description" rows="5" style="resize: vertical; width: 100%;" placeholder="description"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save-button">Save changes</button>
+                <button type="button" class="btn btn-primary" id="save-button">Save game</button>
             </div>
         </div>
     </div>
 </div>
+}
+
+@section Scripts
+{
+    <script src="~/js-gen/Index.js" type="module" defer></script>
 }

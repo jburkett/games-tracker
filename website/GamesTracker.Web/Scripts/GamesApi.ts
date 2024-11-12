@@ -23,7 +23,7 @@ export const fetchGameDetails = async (id: number): Promise<Game> => {
     }
 }
 
-export const updateGameDetails = async (game: Game): Promise<boolean> => {
+export const updateGame = async (game: Game): Promise<boolean> => {
     const url = `/api/Games/${game.id}`; // Root-relative URL
 
     const options = {
@@ -45,6 +45,55 @@ export const updateGameDetails = async (game: Game): Promise<boolean> => {
         }
     } catch (error) {
         console.error("Could not update game details for ID", game.id, ":", error);
+        return false;
+    }
+}
+
+export const addGame = async (game: Game): Promise<number> => {
+    const url = `/api/Games`; // Root-relative URL
+
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(game)
+    };
+
+    try {
+        const response = await fetch(url, options);
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Game added successfully with ID", data.id);
+            return data.id;
+        } else {
+            console.error(`HTTP error! status: ${response.status}`);
+            return -1;
+        }
+    } catch (error) {
+        console.error("Could not add game details:", error);
+        return -1;
+    }
+}
+
+export const deleteGame = async (id: number): Promise<boolean> => {
+    const url = `/api/Games/${id}`; // Root-relative URL
+
+    const options = {
+        method: "DELETE"
+    };
+
+    try {
+        const response = await fetch(url, options);
+        if (response.ok) {
+            console.log("Game deleted successfully");
+            return true;
+        } else {
+            console.error(`HTTP error! status: ${response.status}`);
+            return false;
+        }
+    } catch (error) {
+        console.error("Could not delete game details for ID", id, ":", error);
         return false;
     }
 }
