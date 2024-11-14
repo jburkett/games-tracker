@@ -30,6 +30,16 @@ class BindableGame {
             description: this.description.value
         };
     }
+
+    public bindToPage(){
+        document.querySelectorAll("[data-bind]").forEach((elem: HTMLElement) => {
+            const key = elem.getAttribute("data-bind");
+            if(key){
+                const obs = (boundGame as any)[key] as Observable<any>;
+                bindControl(elem, obs);
+            }
+        });
+    }
 }
 
 let boundGame = new BindableGame(0, "", "");
@@ -78,5 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("save-button")?.addEventListener("click", saveGame);
 
-    bindGame();
+    boundGame.bindToPage();
 });
